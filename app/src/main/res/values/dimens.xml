@@ -1,0 +1,7 @@
+<resources>
+    <!-- This is what I follow to decide dimens for phone and tablet -->
+    <!-- https://material.io/guidelines/layout/metrics-keylines.html#metrics-keylines-ratio-keylines -->
+    <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_whitespace">8dp</dimen>
+</resources>
