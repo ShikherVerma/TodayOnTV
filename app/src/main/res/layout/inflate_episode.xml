@@ -23,72 +23,125 @@
         app:cardUseCompatPadding="true"
         app:onCardClick="@{viewModel}">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/card_whitespace">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <RelativeLayout
+                android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/author"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:id="@+id/header_image"
+                    android:layout_width="@dimen/card_image_size"
+                    android:layout_height="@dimen/card_image_size"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/textview_time"
-                    android:text="@{viewModel.episode.name}"
-                    android:textAppearance="?attr/headingTextAppearance"
-                    android:textColor="?attr/colorAccent" />
+                    app:setImage="@{viewModel}" />
 
-                <TextView
-                    android:id="@+id/textview_time"
+                <LinearLayout
+                    android:id="@+id/header_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/dummy_time"
-                    android:textAppearance="?attr/normalTextAppearance" />
+                    android:layout_toEndOf="@id/header_image"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_whitespace">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="2"
+                        android:paddingEnd="@dimen/card_whitespace"
+                        android:paddingStart="@dimen/card_whitespace"
+                        android:text="@{viewModel.episode.name}"
+                        android:textAppearance="?attr/headingTextAppearance"
+                        android:textColor="?attr/colorAccent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:padding="@dimen/card_whitespace"
+                        android:text="@{UiUtils.timeDiff(viewModel.episode.airstamp)}"
+                        android:textAppearance="?attr/normalTextAppearance" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:paddingEnd="@dimen/card_whitespace"
+                        android:paddingStart="@dimen/card_whitespace"
+                        android:text="@{viewModel.episode.show.network.name}"
+                        android:textAppearance="?attr/normalTextAppearance" />
+
+                </LinearLayout>
 
             </RelativeLayout>
-
-            <TextView
-                android:id="@+id/content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{UiUtils.setHtmlToTextView(viewModel.episode.summary)}"
-                android:textAppearance="?attr/normalTextAppearance" />
 
             <RelativeLayout
                 android:id="@+id/details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/header"
                 android:visibility="@{viewModel.isSelected ? View.VISIBLE : View.GONE}">
 
-                <TextView
+                <RelativeLayout
+                    android:id="@+id/details_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:text="@{viewModel.episode.name}"
-                    android:textAppearance="?attr/headingTextAppearance"
-                    android:textColor="?attr/colorAccent" />
+                    android:padding="@dimen/card_whitespace">
+
+                    <TextView
+                        android:id="@+id/season"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:maxLines="1"
+                        android:text="@{`Season ` + viewModel.episode.season + ` | `}"
+                        android:textAppearance="?attr/normalTextAppearance" />
+
+                    <TextView
+                        android:id="@+id/episode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/season"
+                        android:maxLines="1"
+                        android:text="@{`Episode ` + viewModel.episode.number + ` | `}"
+                        android:textAppearance="?attr/normalTextAppearance" />
+
+                    <TextView
+                        android:id="@+id/runtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/episode"
+                        android:maxLines="1"
+                        android:text="@{`Runtime ` + viewModel.episode.runtime + `mins`}"
+                        android:textAppearance="?attr/normalTextAppearance" />
+
+                </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/episode_summary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/dummy_time"
+                    android:layout_below="@id/details_info"
+                    android:padding="@dimen/card_whitespace"
+                    android:text="@{UiUtils.setHtmlToTextView(viewModel.episode.summary)}"
                     android:textAppearance="?attr/normalTextAppearance" />
 
+                <Button
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/episode_summary"
+                    android:text="@string/about_the_show_button"
+                    android:onClick="@{viewModel.onAboutShowClick}"
+                    android:textColor="?colorAccent" />
             </RelativeLayout>
 
-        </LinearLayout>
-
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 
 </layout>

@@ -7,8 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorError">@color/colorGrey</item>
-        <item name="headingTextAppearance">@style/TextBoldMedium</item>
-        <item name="normalTextAppearance">@android:style/TextAppearance.Small</item>
+        <item name="headingTextAppearance">@style/TextBoldLarge</item>
+        <item name="normalTextAppearance">@android:style/TextAppearance.Medium</item>
     </style>
 
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="TextBoldMedium" parent="TextAppearance.AppCompat.Medium">
+    <style name="TextBoldLarge" parent="TextAppearance.AppCompat.Large">
         <item name="android:textStyle">bold</item>
     </style>
 </resources>

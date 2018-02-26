@@ -2,7 +2,9 @@ package com.shikherverma.todayontv.utils
 
 import android.content.Context
 import android.text.Html
+import android.util.Log
 import android.view.View
+import java.util.*
 
 /** A singleton class containing function for UI and Animations */
 object UiUtils {
@@ -13,9 +15,9 @@ object UiUtils {
     @JvmStatic
     fun setHtmlToTextView(html: String?): CharSequence {
         return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            removeHtmlBottomPadding(Html.fromHtml(html ?: "", Html.FROM_HTML_MODE_LEGACY))
+            removeHtmlBottomPadding(Html.fromHtml(html ?: "Summary not available!", Html.FROM_HTML_MODE_LEGACY))
         } else {
-            removeHtmlBottomPadding(Html.fromHtml(html ?: ""))
+            removeHtmlBottomPadding(Html.fromHtml(html ?: "Summary not available!"))
         }
     }
 
@@ -31,6 +33,28 @@ object UiUtils {
             charSequence = charSequence.subSequence(0, charSequence.length - 1)
         }
         return charSequence
+    }
+
+    /**
+     * Calculate time difference from current time.
+     *
+     * @param airstamp timestamp for which relative time has to be calculated
+     */
+    @JvmStatic
+    fun timeDiff(airstamp: Date): String {
+        val current: Date = Date()
+        Log.wtf("tag", current.toString())
+        return if ( current >= airstamp) {
+            "Aired already :("
+        } else {
+            var hrs: Int = airstamp.hours - current.hours
+            var min: Int = airstamp.minutes - current.minutes
+            if (min < 0) {
+                min += 60
+                hrs -= 1
+            }
+            "Starts in $hrs hr $min min"
+        }
     }
 
     /**
