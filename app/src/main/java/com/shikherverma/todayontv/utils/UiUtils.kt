@@ -48,6 +48,7 @@ object UiUtils {
             "Aired already :("
         } else {
             var hrs: Int = airstamp.hours - current.hours
+            if (hrs < 0) hrs += 24
             var min: Int = airstamp.minutes - current.minutes
             if (min < 0) {
                 min += 60

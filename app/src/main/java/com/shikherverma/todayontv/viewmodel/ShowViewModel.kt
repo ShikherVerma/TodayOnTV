@@ -24,16 +24,13 @@ class ShowViewModel(val show: Show) : BaseObservable() {
         @JvmStatic
         @BindingAdapter("setImage")
         fun setImage(imageView: ImageView, viewModel: ShowViewModel) {
-            val src: String =
-                    when {
-                        viewModel.show.image != null -> viewModel.show.image.medium
-                        else -> ""
-                    }
-            Glide.with(imageView.context)
-                    .load(src)
-                    .apply(RequestOptions()
-                            .placeholder(R.color.colorPrimary))
-                    .into(imageView)
+            if (viewModel.show.image != null) {
+                Glide.with(imageView.context)
+                        .load(viewModel.show.image.original)
+                        .apply(RequestOptions()
+                                .placeholder(R.color.colorPrimary))
+                        .into(imageView)
+            }
         }
     }
 }

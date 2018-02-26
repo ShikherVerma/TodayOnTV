@@ -7,7 +7,7 @@
     <dimen name="card_whitespace">12dp</dimen>
     <dimen name="error_whitespace">12dp</dimen>
     <dimen name="card_image_size">150dp</dimen>
-    <dimen name="app_bar_height">240dp</dimen>
+    <dimen name="app_bar_height">300dp</dimen>
     <dimen name="fab_margin">24dp</dimen>
     <dimen name="show_info_margin">24dp</dimen>
     <dimen name="show_whitespace">12dp</dimen>
