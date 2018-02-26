@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.shikherverma.todayontv.R
 import com.shikherverma.todayontv.model.Episode
+import com.shikherverma.todayontv.utils.UiUtils.Companion.setHtmlToTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
@@ -56,7 +57,7 @@ class ScheduleActivity : BaseActivity() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: Episode) {
             itemView.author.text = item.name
-            itemView.content.text = item.url
+            setHtmlToTextView(itemView.content, item.summary)
         }
     }
 }
