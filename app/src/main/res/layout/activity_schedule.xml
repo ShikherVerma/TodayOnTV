@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.shikherverma.todayontv.view.activities.ScheduleActivity">
+    tools:context="com.shikherverma.todayontv.view.activity.ScheduleActivity">
 
     <LinearLayout
         android:id="@+id/progress_container"

@@ -3,6 +3,7 @@
     <!-- https://material.io/guidelines/layout/metrics-keylines.html#metrics-keylines-ratio-keylines -->
     <dimen name="card_corner_radius">3dp</dimen>
     <dimen name="card_elevation">3dp</dimen>
+    <dimen name="card_selected_elevation">9dp</dimen>
     <dimen name="card_whitespace">12dp</dimen>
     <dimen name="error_whitespace">12dp</dimen>
 </resources>

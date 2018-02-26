@@ -1,49 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    app:cardCornerRadius="@dimen/card_corner_radius"
-    app:cardElevation="@dimen/card_elevation"
-    app:cardUseCompatPadding="true">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.shikherverma.todayontv.utils.UiUtils" />
+
+        <variable
+            name="viewModel"
+            type="com.shikherverma.todayontv.viewmodel.EpisodeViewModel" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/card_whitespace">
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardCustomElevation="@{viewModel}"
+        app:cardUseCompatPadding="true"
+        app:onCardClick="@{viewModel}">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/card_whitespace">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/textview_time"
+                    android:text="@{viewModel.episode.name}"
+                    android:textAppearance="?attr/headingTextAppearance"
+                    android:textColor="?attr/colorAccent" />
+
+                <TextView
+                    android:id="@+id/textview_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/dummy_time"
+                    android:textAppearance="?attr/normalTextAppearance" />
+
+            </RelativeLayout>
 
             <TextView
-                android:id="@+id/author"
+                android:id="@+id/content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:textAppearance="?attr/headingTextAppearance"
-                android:textColor="?attr/colorAccent" />
-
-            <TextView
-                android:id="@+id/textview_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:text="@string/dummy_time"
+                android:text="@{UiUtils.setHtmlToTextView(viewModel.episode.summary)}"
                 android:textAppearance="?attr/normalTextAppearance" />
 
-        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isSelected ? View.VISIBLE : View.GONE}">
 
-        <TextView
-            android:id="@+id/content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?attr/normalTextAppearance" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="@{viewModel.episode.name}"
+                    android:textAppearance="?attr/headingTextAppearance"
+                    android:textColor="?attr/colorAccent" />
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/dummy_time"
+                    android:textAppearance="?attr/normalTextAppearance" />
 
-</android.support.v7.widget.CardView>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>
