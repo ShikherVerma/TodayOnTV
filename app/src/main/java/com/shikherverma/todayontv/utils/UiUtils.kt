@@ -1,6 +1,8 @@
 package com.shikherverma.todayontv.utils
 
+import android.content.Context
 import android.text.Html
+import android.view.View
 import android.widget.TextView
 
 /** A singleton class containing function for UI and Animations */
@@ -30,4 +32,25 @@ object UiUtils {
         }
         return charSequence
     }
+
+    /**
+     * Animate switching visibility of views.
+     *
+     * @param context Activity context
+     * @param fadeIn View to be shown
+     * @param fadeOut1 View to be hidden
+     * @param fadeOut2 View to be hidden
+     */
+    fun fadeSwitch(context: Context, fadeIn: View, fadeOut1: View, fadeOut2: View) {
+        fadeOut1.startAnimation(
+                android.view.animation.AnimationUtils.loadAnimation(context, android.R.anim.fade_out))
+        fadeOut2.startAnimation(
+                android.view.animation.AnimationUtils.loadAnimation(context, android.R.anim.fade_out))
+        fadeIn.startAnimation(
+                android.view.animation.AnimationUtils.loadAnimation(context, android.R.anim.fade_in))
+        fadeOut1.visibility = View.GONE
+        fadeOut2.visibility = View.GONE
+        fadeIn.visibility = View.VISIBLE
+    }
+
 }

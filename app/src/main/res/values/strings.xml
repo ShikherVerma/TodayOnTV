@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Today On TV</string>
     <string name="dummy_time">1 hours ago</string>
+    <string name="retry">Retry</string>
+    <string name="windows10_error_message">Something went wrong :(</string>
 </resources>
