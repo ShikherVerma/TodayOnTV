@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.shikherverma.todayontv.R
 import com.shikherverma.todayontv.model.Episode
-import com.shikherverma.todayontv.utils.UiUtils.Companion.setHtmlToTextView
+import com.shikherverma.todayontv.utils.UiUtils.setHtmlToTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
