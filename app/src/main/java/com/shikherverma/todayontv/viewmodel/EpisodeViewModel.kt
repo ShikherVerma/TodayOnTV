@@ -1,5 +1,6 @@
 package com.shikherverma.todayontv.viewmodel
 
+import android.content.Intent
 import android.databinding.BaseObservable
 import android.databinding.BindingAdapter
 import android.support.v7.widget.CardView
@@ -9,13 +10,17 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.shikherverma.todayontv.R
 import com.shikherverma.todayontv.model.Episode
+import com.shikherverma.todayontv.model.SHOW_TAG
+import com.shikherverma.todayontv.view.activity.ShowActivity
 import kotlinx.android.synthetic.main.inflate_episode.view.*
 
 class EpisodeViewModel(val episode: Episode) : BaseObservable() {
     var isSelected: Boolean = false
 
     fun onAboutShowClick(view: View) {
-        TODO("Start Show activity")
+        val intent = Intent(view.context, ShowActivity::class.java)
+        intent.putExtra(SHOW_TAG, episode.show)
+        view.context.startActivity(intent)
     }
 
     companion object {

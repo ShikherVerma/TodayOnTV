@@ -1,6 +1,9 @@
 package com.shikherverma.todayontv.model
 
+import java.io.Serializable
 import java.util.*
+
+const val SHOW_TAG = "show_tag"
 
 /** Server response model for a show */
 data class Show(
@@ -16,4 +19,4 @@ data class Show(
         val network: ShowNetwork,
         val image: ImageInfo?,
         val summary: String?
-)
+) : Serializable

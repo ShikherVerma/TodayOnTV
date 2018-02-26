@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.shikherverma.todayontv.view.activity.ShowActivity">
+
+    <data>
+
+        <import type="com.shikherverma.todayontv.utils.UiUtils" />
+
+        <variable
+            name="viewModel"
+            type="com.shikherverma.todayontv.viewmodel.ShowViewModel" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:toolbarId="@+id/toolbar">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    app:title="@{viewModel.show.name}" />
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:id="@+id/show_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/show_info_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/show_whitespace"
+                    android:text="@{`Name: ` + viewModel.show.name}"
+                    android:textAppearance="?attr/normalTextAppearance" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/show_whitespace"
+                    android:text="@{`Type: ` + viewModel.show.type}"
+                    android:textAppearance="?attr/normalTextAppearance" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/show_whitespace"
+                    android:text="@{`Language: ` + viewModel.show.language}"
+                    android:textAppearance="?attr/normalTextAppearance" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/show_whitespace"
+                    android:text="@{`Genres: ` + viewModel.getGenresAsString()}"
+                    android:textAppearance="?attr/normalTextAppearance" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/show_whitespace"
+                    android:text="@{`Premiered: ` + viewModel.show.premiered.toString()}"
+                    android:textAppearance="?attr/normalTextAppearance" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/show_whitespace"
+                    android:text="@{`Weekly Schedule: ` + viewModel.getDaysOfWeekAsString()}"
+                    android:textAppearance="?attr/normalTextAppearance" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/show_whitespace"
+                    android:text="@{`Timing: ` + viewModel.show.schedule.time}"
+                    android:textAppearance="?attr/normalTextAppearance" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/show_whitespace"
+                    android:text="@{`Runtime: ` + viewModel.show.runtime}"
+                    android:textAppearance="?attr/normalTextAppearance" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/show_whitespace"
+                    android:text="@{`Network: ` + viewModel.show.network.name}"
+                    android:textAppearance="?attr/normalTextAppearance" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/show_whitespace"
+                    android:text="@{UiUtils.setHtmlToTextView(viewModel.show.summary)}"
+                    android:textAppearance="?attr/normalTextAppearance" />
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:onClick="@{viewModel.onFabClick}"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="bottom|end"
+            app:srcCompat="@drawable/ic_add_alert" />
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

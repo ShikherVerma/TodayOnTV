@@ -3,4 +3,5 @@
     <string name="retry">Retry</string>
     <string name="windows10_error_message">Something went wrong :(</string>
     <string name="about_the_show_button">About The Show</string>
+    <string name="title_activity_show">About The Show</string>
 </resources>

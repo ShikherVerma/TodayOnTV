@@ -20,6 +20,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.activity.ShowActivity"
+            android:label="@string/title_activity_show"
+            android:parentActivityName=".view.activity.ScheduleActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.shikherverma.todayontv.view.activity.ScheduleActivity" />
+        </activity>
     </application>
 
 </manifest>
